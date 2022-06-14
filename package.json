@@ -1,0 +1,19 @@
+{
+  "name": "mioscaffold",
+  "version": "0.0.0",
+  "description": "Scaffold for microservice architecture",
+  "main": "null",
+  "scripts": {
+    "test": "null"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/citkane/mioScaffold.git"
+  },
+  "author": "Michael Jonker",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/citkane/mioScaffold/issues"
+  },
+  "homepage": "https://github.com/citkane/mioScaffold#readme"
+}
