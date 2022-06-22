@@ -1,0 +1,11 @@
+{
+  "name": "@mio-core/miosecure",
+  "version": "0.0.0",
+  "description": "Security utilities for mio microservice architecture",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael Jonker",
+  "license": "GPL-3.0-or-later"
+}

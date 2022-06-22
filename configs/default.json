@@ -1,0 +1,89 @@
+{
+    "mioApp" : {
+        "mqttBroker": {
+            "tcp": "tcp://localhost:1883",
+            "websocket": "ws://localhost:8083",
+            "dashboard": "http://localhost:18083",
+            "httpAdmin": {
+                "api": "http://localhost:8081/api/v4",
+                "username": "admin",
+                "password": "public"
+            }
+        },
+        "authServer": {
+            "storage": "filesystem",
+            "rest":{
+                "https": false,
+                "certs": {
+                    "certbot": false,
+                    "certbotEmail":"",
+                    "privateKey":"",
+                    "certificate":""
+                },
+                "location": "localhost",
+                "port": 8900,
+                "cors": {
+                    "protected": {
+                        "use": false,
+                        "whitelist": []
+                    },
+                    "public": {
+                        "use": false,
+                        "whitelist": []
+                    }
+                },
+                "basicauth": {
+                    "protected": {
+                        "use": true,
+                        "username": "admin",
+                        "password": "public"
+                    },
+                    "public":{
+                        "use": false,
+                        "username": "",
+                        "password": ""
+                    }
+                }
+            },
+            "allowedUserDomains": [
+                "@openpoint.ie"
+            ]
+        },
+        "adminRoles": {
+            "service": ["super", "developer"],
+            "device": ["super", "deviceinstaller", "deviceengineer"]
+        },
+        "tokenExpiry": {
+            "service": "1 minute",
+            "user":"2 days",
+            "newpassword": "1 hour"
+        },
+        "smtp": {
+            "host": "",
+            "port": 465,
+            "secure": true,
+            "auth": {
+                "user":"",
+                "pass": ""
+            },
+            "from": ""
+        }
+    },
+    "documentation": {
+        "doco": [
+            "README.md",
+            "VIOSCAFFOLD.md",
+            "core/viocore-connect/README.js",
+            "core/viocore-look/README.md",
+            "templates/frontend/README.md",
+            "templates/frontend/src/Session.js",
+            "templates/frontend/src/components/ModuleComponent.js",
+            "templates/backend/README.md",
+            "templates/backend/src/module.js",
+            "templates/backend/src/interfaces/ExternalApi.js",
+            "templates/backend/src/interfaces/InternalApi.js",
+            "templates/backend/src/internalApi/Api1.js",
+            "templates/backend/src/internalApi/Api2.js"
+        ]
+    }
+}
