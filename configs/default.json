@@ -1,13 +1,16 @@
 {
     "mioApp" : {
-        "mqttBroker": {
-            "tcp": "tcp://localhost:1883",
-            "websocket": "ws://localhost:8083",
-            "dashboard": "http://localhost:18083",
-            "httpAdmin": {
-                "api": "http://localhost:8081/api/v4",
-                "username": "admin",
-                "password": "public"
+        "BUS":{
+            "type":"mqtt",
+            "details": {
+                "tcp": "tcp://localhost:1883",
+                "websocket": "ws://localhost:8083",
+                "dashboard": "http://localhost:18083",
+                "httpAdmin": {
+                    "api": "http://localhost:8081/api/v4",
+                    "username": "admin",
+                    "password": "public"
+                }
             }
         },
         "authServer": {
