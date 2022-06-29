@@ -2,3 +2,4 @@ securityStore
 node_modules
 .vscode
 mio*
+docs
