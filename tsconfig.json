@@ -1,7 +1,10 @@
 {
 	"include": ["src"],
 	"typedocOptions": {
-		"entryPoints": ["./src/mioCommonDependencies.ts"],
+		"entryPoints": ["./src/mioCommonDependencies.ts", "./src/mioUtils.ts"],
+		"entryPointStrategy": "resolve",
+		"externalPattern": "**/node_modules/**",
+		"excludeExternals": true,
 		"out": "docs",
 		"name": "mioScaffold",
 		"includeVersion": true,
