@@ -1,0 +1,14 @@
+{
+	environment: 'test',
+    security: {
+        keys: {
+            keystorage:{
+                use: 'file',
+                file: {
+                    'location': 'tests/securityStore'
+                }
+            }
+        }
+    },
+
+}
