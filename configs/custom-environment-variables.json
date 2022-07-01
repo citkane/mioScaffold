@@ -1,7 +1,0 @@
-{
-    "mio" : {
-        "mqttBroker": {
-            "tcp": "MQTT_TCP"
-        }
-    }
-}

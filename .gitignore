@@ -1,5 +1,8 @@
 securityStore
 node_modules
-.vscode
-mio*
+build
 docs
+coverage
+
+node_modules
+.vscode
