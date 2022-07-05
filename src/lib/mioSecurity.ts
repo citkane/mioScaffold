@@ -1,6 +1,7 @@
-import * as crypto from './mioSecurity/crypto.js'
-
 /**
  * A collection of cryptographic utilities
+ * 
+ * @packageDocumentation
  */
-export {crypto}
+
+export * as crypto from './mioSecurity/crypto/crypto'

@@ -7,8 +7,10 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "test": "NODE_ENV=test tsc; mocha",
-    "test:watch": "NODE_ENV=test mocha --watch"
+    "doc": "typdoc",
+    "doc:watch": "typedoc --watch",
+    "test": "tsc; NODE_ENV=test mocha",
+    "test:unit:watch": "NODE_ENV=test mocha --watch ./tests/unit/unit.spec.js"
   },
   "repository": {
     "type": "git",
@@ -47,6 +49,7 @@
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^18.0.0",
     "chai": "^4.3.6",
+    "chai-as-promised": "^7.1.1",
     "mocha": "^10.0.0",
     "typedoc": "^0.23.2",
     "typedoc-plugin-markdown": "^3.13.2",
