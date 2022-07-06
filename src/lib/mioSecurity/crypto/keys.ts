@@ -44,8 +44,7 @@ export function generateKeyPair(alg = keyAlgorithm, len = modulusLength): Promis
 			alg,
 			{ modulusLength: len },
 			(err: Error, publicKey: keyObject, privateKey: keyObject) => {
-				if (err) reject(err);
-				resolve({ publicKey, privateKey });
+				return err? reject(err) : resolve({ publicKey, privateKey });
 			});
 	});
 }
@@ -57,16 +56,10 @@ export function generateKeyPair(alg = keyAlgorithm, len = modulusLength): Promis
  * 
  * @group Key Conversion
  */
-export function keyToPEM(key: keyObject): publicPEM | privatePEM {
-	switch (key.type) {
-	case 'public':
-		return key.export({ type: 'spki', format: 'pem' }) as publicPEM;
-		break;
-	case 'private':
-		return key.export({ type: 'pkcs8', format: 'pem' }) as privatePEM;
-	default:
-		throw new Error(`Only public / private keys can be converted to PEM. Received type: ${key.type}`);
-	}
+export function keyToPEM(key: keyObject): publicPEM | privatePEM | null {
+	if(key.type !== 'private' && key.type !== 'public') throw Error(`Only public / private keys can be converted to PEM. Received type: ${key.type}`);
+	const type = key.type === 'private' ? 'pkcs8' : 'spki';
+	return key.export({ type, format: 'pem' }) as publicPEM;
 }
 
 /**
@@ -77,11 +70,7 @@ export function keyToPEM(key: keyObject): publicPEM | privatePEM {
  * @group Key Conversion
  */
 export function pemToPublicKey(PEM: publicPEM | privatePEM): keyObject{
-	if (PEM.startsWith('-----BEGIN')) {
-		return crypto.createPublicKey({ key: PEM, format: 'pem' });
-	} else {
-		throw new Error('Not a valid PEM string');
-	}
+	return crypto.createPublicKey({ key: PEM, format: 'pem' });
 }
 
 /**

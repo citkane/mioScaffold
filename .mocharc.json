@@ -1,5 +1,10 @@
 {
 	"spec": "tests/**/*.spec.ts",
 	"watch-files": ["src/**/*.ts", "tests/**/*.spec.ts"],
-	"delay": false
+	"delay": false,
+	"require": [
+		"ts-node/register/transpile-only",
+		"source-map-support/register"
+	],
+	"recursive": true
 }
