@@ -1,16 +1,15 @@
 /**
  * This right here motherfucker!
  * 
- * @packageDocumentation
+ * @module
  */
 
 process.env['OPENSSL_CONF']='/dev/null'; /* Workaround for https://github.com/nodejs/node/discussions/43184 */
 
-import * as tools from './lib/mioTools.js';
-import {config} from './lib/mioConfig.js';
-import * as depends from './lib/mioDependencies.js';
-import * as security from './lib/mioSecurity.js';
-import { KeyObject } from 'crypto';
+import * as tools from './lib/mioTools';
+import {config} from './lib/mioConfig';
+import * as depends from './lib/mioDependencies';
+import * as security from './lib/mioSecurity';
 
 
 export {config};
@@ -25,9 +24,5 @@ export {tools};
  * 
  */
 export {depends};
-
-/**
- * Provides security utility functions for consumption with the mio framework.
- */
 export {security};
 

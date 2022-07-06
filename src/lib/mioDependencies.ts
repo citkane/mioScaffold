@@ -1,5 +1,5 @@
 import path from 'path';
-import {findMioRootDir} from './mioTools.js';
+import {findMioRootDir} from './mioTools';
 process.env["NODE_CONFIG_DIR"] = path.join(findMioRootDir(__dirname), 'configs');
 interface mioDependencies {[key: string]: any}
 

@@ -1,17 +1,29 @@
-import jose = require('jose');
-import config = require('config');
+/**
+ * #### The base Json Web Token (JWT) utilities for mio.
+ * This should be limited to usage of the
+ * <a href="https://github.com/panva/jose" target="_blank">jose</a>
+ * suite of JWT tools and upgraded to native NODEjs when native tools are stable.
+ * 
+ * @module
+ */
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const crypto = require('crypto');
-import { KeyObject } from 'crypto';
+import jose = require('jose');
+
+import config from 'config';
+import type { keyObject } from './keys';
 
 type JWTtoken = `${string}.${string}.${string}`;
-export type uri = `${string}:${string}/${string}?${string}#${string}` |
+type uri = `${string}:${string}/${string}?${string}#${string}` |
 `${string}:${string}/${string}?${string}` |
 `${string}:${string}/${string}` |
 `${string}:${string}/` |
 `${string}:${string}`
-export type expireTime = `${number} ${'seconds' | 'minutes' | 'hours' | 'days' | 'weeks'}`;
+export type expireTime = `${number} ${'seconds' |'second' | 'minutes' | 'minute' | 'hours' | 'hour'| 'days' | 'day' | 'weeks'| 'week'}`;
 /**
- * At minimum reserverved claims as referenced from [auth0.com](https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-token-claims#reserved-claims).
+ * At minimum recommeended reserved claims as referenced from
+ * <a href="https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-token-claims#reserved-claims" target="_blank">auth0.com</a>.
  */
 export interface jwtClaims extends jwtCustomClaims{
 	/** (issuer): The issuer of the JWT */
@@ -31,7 +43,11 @@ export interface jwtClaims extends jwtCustomClaims{
 	/** Any amount of addition custom claims */
 }
 interface jwtCustomClaims {
-	[key:`mio_${string}`]: any
+	[key:`mio_${string}`]: string | object | number;
+}
+export interface validatedClaims {
+	payload: jwtClaims,
+	protectedHeader: jose.JWTHeaderParameters
 }
 
 const jwtAlgorithmAsym: string = config.get('security.jwt.algorithmASym');
@@ -50,32 +66,43 @@ function formatClaimObject(claim: jwtClaims): jwtClaims {
  * @param expiration the expire time. Use the format '1 day', '2 weeks', etc
  * @param key The key or secret you wish to sighn the JWT with
  * @param asym uses asymetrical algorithm by default, set `false` for use with symetrical secrets
- * @returns 
+ * @returns a JWT formatted string
+ * 
+ * @group Generate
  */
-export function generateTokenJWT(claims:jwtClaims, key: KeyObject, alg = jwtAlgorithmAsym): Promise<JWTtoken> {
-	return new Promise(async (resolve, reject) => {
-		const jClaims: unknown = formatClaimObject(claims);	
-		const jwt = await new jose.SignJWT(jClaims as jose.JWTPayload)
-			.setProtectedHeader({
-				alg
-			})
-			.setIssuer(claims.iss)
-			.setExpirationTime(claims.exp)
-			.sign(key)
-			.catch(err => reject(err))
-		
-		resolve(jwt as JWTtoken)
-	})
+export function generateTokenJWT(claims:jwtClaims, key: keyObject, alg = jwtAlgorithmAsym): Promise<JWTtoken> {
+	const jClaims: unknown = formatClaimObject(claims);
+	return new jose.SignJWT(jClaims as jose.JWTPayload)
+		.setProtectedHeader({
+			alg
+		})
+		.setIssuer(claims.iss)
+		.setExpirationTime(claims.exp)
+		.sign(key) as Promise<JWTtoken>;
 }
 
+/**
+ * Decodes an unencrypted signed JWT.  
+ * This does NOT validate if the payload
+ * @param token 
+ * @returns a payload claims
+ * 
+ * @group Parse
+ */
 export function decodeTokenJwt(token: JWTtoken): jwtClaims {
 	const payload = jose.decodeJwt(token) as unknown;
 	return payload as jwtClaims;
 }
 
-
-export function validateTokenJWT(token: JWTtoken, key: KeyObject): Promise<any> {
-	return jose.jwtVerify(token, key);
-	//const foo = jose.decodeJwt(token);
-	//return new Promise((resolve) => resolve(foo));
+/**
+ * 
+ * @param token 
+ * @param key 
+ * @returns 
+ * 
+ * @group Parse
+ */
+export function validateTokenJWT(token: JWTtoken, key: keyObject): Promise<validatedClaims> {
+	const validation = jose.jwtVerify(token, key) as Promise<unknown>;
+	return validation as Promise<validatedClaims>;
 }

@@ -1,5 +1,5 @@
 {
-	"spec": "tests/**/*.spec.js",
-	"watch-files": ["build/**/*.js", "tests/**/*.spec.js"],
+	"spec": "tests/**/*.spec.ts",
+	"watch-files": ["src/**/*.ts", "tests/**/*.spec.ts"],
 	"delay": false
 }
