@@ -1,1 +1,0 @@
-const { mqtt } = require('@mio/mioscaffold');

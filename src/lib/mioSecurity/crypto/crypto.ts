@@ -5,9 +5,11 @@
  * Current dependencies:
  * - <a href="https://nodejs.org/dist/latest-v16.x/docs/api/crypto.html" target="_blank">node:crypto</a>
  * - <a href="https://github.com/panva/jose" target="_blank">jose</a>
+ * - <a href="https://github.com/kelektiv/node.bcrypt.js" target="_blank">bcrypt</a>
  * 
  * @module
  */
 
 export * as jwt from './jwt';
 export * as keys from './keys';
+export * as passwords from './passwords';

@@ -56,7 +56,6 @@
     },
     security: {
         jwt: {
-            algorithmSym: 'HS256',
             algorithmASym: 'RS256',
             tokenExpiry: {
                 service: '1 minute',
@@ -76,7 +75,7 @@
                 sql: {}
             }
         },
-        passwords: {
+        hash: {
             saltRounds: 10,
         }
     },

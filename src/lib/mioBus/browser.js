@@ -1,2 +1,0 @@
-
-console.log('mioBus browser');
