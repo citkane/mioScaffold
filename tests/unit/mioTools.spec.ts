@@ -1,7 +1,7 @@
 import path from 'path';
 import {assert, mio} from './unit.spec';
 
-describe('tool utility tests', function(){
+describe('TOOL UTILITY TESTS', function(){
 	it('Finds the root install path', function () {
 		let rootDir;
 		const installedPath = path.join(__dirname, '../../');

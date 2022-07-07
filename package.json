@@ -42,6 +42,8 @@
     "mqtt-pattern": "^1.2.0",
     "node-rsa": "^1.1.1",
     "prompt": "^1.3.0",
+    "sqlite": "^4.1.1",
+    "sqlite3": "^5.0.8",
     "uglify-es": "^3.3.9",
     "uid": "^2.0.0"
   },

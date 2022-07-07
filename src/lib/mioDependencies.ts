@@ -1,43 +1,47 @@
-import path from 'path';
-import {findMioRootDir} from './mioTools';
-process.env["NODE_CONFIG_DIR"] = path.join(findMioRootDir(__dirname), 'configs');
-interface mioDependencies {[key: string]: any}
+/**
+ * #### Provides 3rd party package dependencies for consumption within the mio framework.
+ * 
+ * @module
+ */
+
+interface mioDependencies { [key: string]: unknown }
 
 /**
  * A list of NODE.js package dependencies which are imported into mioScaffold and exported for use in other modules:
  */
 const nodePackageDependencies: [...(string | [string, string])[]] = [
-    'mqtt',
-    'config',
-    'mqtt-pattern',
-    'uid',
-    ['colors', 'colors/safe'],
-    'bcrypt',
-    'checksum',
-    'fs-extra',
-    'jose',
-    'node-rsa',
-    'uglify-es',
-    'axios',
-    'folder-hash',
-    'prompt',
-    'body-parser',
-    'cors',
-    'express',
-    'express-basic-auth',
-    'crypto'
-]
-const dependencies: mioDependencies = {}
+	'mqtt',
+	'mqtt-pattern',
+	'uid',
+	['colors', 'colors/safe'],
+	'bcrypt',
+	'checksum',
+	'fs-extra',
+	'jose',
+	'node-rsa',
+	'uglify-es',
+	'axios',
+	'folder-hash',
+	'prompt',
+	'body-parser',
+	'cors',
+	'express',
+	'express-basic-auth',
+	'crypto',
+	'sqlite',
+	'sqlite3'
+];
+const dependencies: mioDependencies = {};
 nodePackageDependencies.forEach(nodePackage => {
-    let packageName, packageRequire
-    if(typeof(nodePackage) === 'object') {
-        packageName = nodePackage[0]
-        packageRequire = nodePackage[1]
-    } else {
-        packageName = packageRequire = nodePackage
-    }
-    dependencies[packageName] = require(packageRequire);
-})
+	let packageName, packageRequire;
+	if (typeof (nodePackage) === 'object') {
+		packageName = nodePackage[0];
+		packageRequire = nodePackage[1];
+	} else {
+		packageName = packageRequire = nodePackage;
+	}
+	dependencies[packageName] = require(packageRequire);
+});
 
 
 /**
@@ -50,6 +54,6 @@ nodePackageDependencies.forEach(nodePackage => {
  * @param packageName The name of the npm package as it would be used with npm install
  * @returns The imported package
  */
-export function getNodePackage(packageName: string): any {
-    return dependencies[packageName]
+export function getNodePackage(packageName: string): unknown {
+	return dependencies[packageName];
 }
