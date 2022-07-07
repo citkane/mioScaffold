@@ -11,7 +11,7 @@
 </style>
 
 <div id = logo style ="background:red; width:100; display:flex; align-items:center; justify-content:left; margin:40px 0">
-	<img src="./assets/logo.svg" alt="mio logo" />
+	<img src="./assets/logo.svg" alt="mio logo" style="width: 40px"/>
 	<h3>Yet Another Microservice Framework</h3>
 </div>
 
