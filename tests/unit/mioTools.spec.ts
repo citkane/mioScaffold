@@ -1,5 +1,6 @@
 import path from 'path';
-import {assert, mio} from './unit.spec';
+import mio from '@mio/scaffold';
+import {assert} from './unit.spec';
 
 describe('TOOL UTILITY TESTS', function(){
 	it('Finds the root install path', function () {
@@ -7,11 +8,11 @@ describe('TOOL UTILITY TESTS', function(){
 		const installedPath = path.join(__dirname, '../../');
 		const installedBaseName = path.basename(installedPath);
 		assert.doesNotThrow(function () {
-			rootDir = mio.tools.findMioRootDir(__dirname, installedBaseName);
+			rootDir = mio.lib.findMioRootDir(__dirname, installedBaseName);
 		});
 		assert.equal(rootDir, installedPath, 'did not find the root install directory');
 	});	
 	it('Errors when the system root folder is reached', function(){
-		assert.throws(()=>mio.tools.findMioRootDir(__dirname, '/'), Error, 'Cannot find the project root folder: \'/\'');
+		assert.throws(()=>mio.lib.findMioRootDir(__dirname, '/'), Error, 'Cannot find the project root folder: \'/\'');
 	});
 });

@@ -1,0 +1,14 @@
+{
+	"$schema": "https://typedoc.org/schema.json",
+	"out": "docs",
+	"entryPoints": [
+		"packages/*"
+	],
+	"entryPointStrategy": "packages",
+	"externalPattern": [
+		"**/node_modules/**"
+	],
+	"excludeExternals": true,
+	"readme": "README.md",
+	"logLevel": "Error"
+}

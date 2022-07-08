@@ -1,29 +1,14 @@
 {
+	"extends": "@mio/tsconfig/commonjs.json",
 	"include": [
-		"./src/**/*.d.ts",
-		"./src/**/*"
+		"package.json"
 	],
-	"typedocOptions": {
-		"entryPoints": [
-			"./src/mioScaffold.ts",
-		],
-		"plugin": [],
-		"entryPointStrategy": "resolve",
-		"externalPattern": "**/node_modules/**",
-		"excludeExternals": true,
-		"out": "docs",
-		"readme": "none"
-	},
 	"compilerOptions": {
-		"outDir": "./build",
-		"target": "es2017", 
-		"module": "CommonJS",
-		"moduleResolution": "Node",
-		"declaration": true,
-		"esModuleInterop": true,
-		"forceConsistentCasingInFileNames": true,
-		"strict": true,
-		"skipLibCheck": true,
-		"inlineSourceMap": true
-	}
+		"outDir": "./dist",
+	},
+	"references": [		
+		{"path": "packages/lib"},
+		{"path": "packages/config"},
+		{"path": "packages/scaffold"},
+	]
 }

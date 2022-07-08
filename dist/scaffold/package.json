@@ -1,0 +1,14 @@
+{
+    "name": "@mio/scaffold",
+    "main": "src/mioScaffold",
+    "typedoc": {
+        "entryPoint": "src/mioScaffold.ts"
+    },
+    "devDependencies": {
+        "@mio/tsconfig": "*"
+    },
+    "dependencies": {
+        "@mio/config": "*",
+        "@mio/lib": "*"
+    }
+}

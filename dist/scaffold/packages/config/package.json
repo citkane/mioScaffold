@@ -1,0 +1,14 @@
+{
+    "name": "@mio/config",
+    "main": "src/mioConfig",
+    "typedoc": {
+        "entryPoint": "src/mioConfig.ts"
+    },
+    "devDependencies": {
+        "@mio/tsconfig": "*"
+    },
+    "dependencies": {
+        "@mio/lib": "*",
+        "@mio/scaffold": "*"
+    }
+}

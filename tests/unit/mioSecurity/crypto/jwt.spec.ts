@@ -1,5 +1,7 @@
-import { assert, mio } from '../../unit.spec';
-import { jwtClaims } from '../../../../build/lib/mioSecurity/crypto/jwt';
+import mio from '@mio/scaffold';
+import { assert } from '../../unit.spec';
+import { jwtClaims } from '@mio/lib/src/mioSecurity/crypto/jwt';
+
 import rewire from 'rewire';
 const jwt = rewire('../../../../src/lib/mioSecurity/crypto/jwt');
 const formatClaimObject = jwt.__get__('formatClaimObject');
@@ -25,21 +27,21 @@ describe('JSON Web Token functions', function () {
 	}
 
 	it('creates JSON Web Tokens', async function () {
-		({publicKey, privateKey} = await mio.security.crypto.keys.generateKeyPair());
-		asymmetricToken = await mio.security.crypto.jwt.generateTokenJWT(claims, privateKey);
+		({publicKey, privateKey} = await mio.lib.security.crypto.keys.generateKeyPair());
+		asymmetricToken = await mio.lib.security.crypto.jwt.generateTokenJWT(claims, privateKey);
 		assert.equal(asymmetricToken.split('.').length, 3);
 	});
 	it('decodes a JWT payload', function(){
-		decodedPayload = mio.security.crypto.jwt.decodeTokenJwt(asymmetricToken);
+		decodedPayload = mio.lib.security.crypto.jwt.decodeTokenJwt(asymmetricToken);
 		testPayload(decodedPayload);
 
 	});
 	it('fails validation for a bad cert', async function(){
-		const badkeys = await mio.security.crypto.keys.generateKeyPair();
-		return assert.isRejected(mio.security.crypto.jwt.validateTokenJWT(asymmetricToken, badkeys.publicKey), Error, 'signature verification failed');
+		const badkeys = await mio.lib.security.crypto.keys.generateKeyPair();
+		return assert.isRejected(mio.lib.security.crypto.jwt.validateTokenJWT(asymmetricToken, badkeys.publicKey), Error, 'signature verification failed');
 	});
 	it('validates a signed JWT', async function(){
-		const validPayload = await mio.security.crypto.jwt.validateTokenJWT(asymmetricToken, publicKey);
+		const validPayload = await mio.lib.security.crypto.jwt.validateTokenJWT(asymmetricToken, publicKey);
 		testPayload(validPayload.payload);		
 	});
 	it('formats a jwtClaims object correctly', function(){

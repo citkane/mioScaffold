@@ -1,8 +1,10 @@
-import { assert, mio } from './unit.spec';
+
 import path from 'path';
 import fs from 'fs-extra';
+import mio from '@mio/scaffold';
+import { assert } from './unit.spec';
 
-const testTempDir = path.join(mio.tools.findMioRootDir(), 'tests/tmp');
+const testTempDir = path.join(mio.lib.findMioRootDir(), 'tests/tmp');
 const testDBfile = path.join(testTempDir, 'tests/tmp/test.db');
 let db;
 
@@ -16,7 +18,7 @@ describe('PERSISTENCE UTILITY TESTS', async function(){
 			fs.removeSync(testTempDir);
 		});
 		it('opens a sqlite3 database from file', async function(){
-			db = await mio.persistence.getSqliteDb(testDBfile);
+			db = await mio.lib.persistence.getSqliteDb(testDBfile);
 			assert.hasAllDeepKeys(db, {'config':['filename', 'driver'], 'db':[]});
 
 		});
