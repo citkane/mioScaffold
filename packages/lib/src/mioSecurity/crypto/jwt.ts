@@ -10,7 +10,6 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const crypto = require('crypto');
 import jose = require('jose');
-import config from '@mio/config';
 import type { keyObject } from './keys';
 
 type JWTtoken = `${string}.${string}.${string}`;
@@ -19,12 +18,6 @@ type uri = `${string}:${string}/${string}?${string}#${string}` |
 `${string}:${string}/${string}` |
 `${string}:${string}/` |
 `${string}:${string}`
-
-export default {
-	generateTokenJWT,
-	decodeTokenJwt,
-	validateTokenJWT
-};
 
 export type expireTime = `${number} ${'seconds' |'second' | 'minutes' | 'minute' | 'hours' | 'hour'| 'days' | 'day' | 'weeks'| 'week'}`;
 /**
@@ -56,8 +49,6 @@ export interface validatedClaims {
 	protectedHeader: jose.JWTHeaderParameters
 }
 
-const jwtAlgorithmAsym: string = config.get('security.jwt.algorithmASym');
-
 function formatClaimObject(claim: jwtClaims): jwtClaims {
 	const now = Math.round(Date.now()/1000);
 	if(!claim.nbf) claim.nbf = now -1;
@@ -66,17 +57,23 @@ function formatClaimObject(claim: jwtClaims): jwtClaims {
 	return claim;
 }
 
+export default {
+	generateTokenJWT,
+	decodeTokenJwt,
+	validateTokenJWT
+};
 /**
  * Generates a new [JSON Web Token](https://jwt.io/)
- * @param issuer the "issuer" claim value
- * @param expiration the expire time. Use the format '1 day', '2 weeks', etc
- * @param key The key or secret you wish to sighn the JWT with
- * @param asym uses asymetrical algorithm by default, set `false` for use with symetrical secrets
- * @returns a JWT formatted string
+ * @param claims 
+ * @param key 
+ * @param alg The algorithm to use. `config.get('security.jwt.algorithmASym') as string;`
+ * @returns 
+ * 
+ * @todo Create a type for acceptable algorithm strings
  * 
  * @group Generate
  */
-export function generateTokenJWT(claims:jwtClaims, key: keyObject, alg = jwtAlgorithmAsym): Promise<JWTtoken> {
+export function generateTokenJWT(claims:jwtClaims, key: keyObject, alg: string): Promise<JWTtoken> {
 	const jClaims: unknown = formatClaimObject(claims);
 	return new jose.SignJWT(jClaims as jose.JWTPayload)
 		.setProtectedHeader({

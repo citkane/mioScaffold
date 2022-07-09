@@ -1,10 +1,17 @@
 {
 	"name": "@mio/lib",
 	"main": "src/mioLib",
-	"typedoc": { 
+	"scripts": {
+		"test:unit": "mocha ./tests/unit/unit.spec.ts"
+	},
+	"typedoc": {
 		"entryPoint": "src/mioLib.ts"
 	},
 	"devDependencies": {
 		"@mio/tsconfig": "*"
+	},
+	"dependencies": {
+		"@mio/config": "*",
+		"@mio/scaffold": "*"
 	}
 }

@@ -3,8 +3,12 @@ import { assert } from '../../unit.spec';
 import { jwtClaims } from '@mio/lib/src/mioSecurity/crypto/jwt';
 
 import rewire from 'rewire';
-const jwt = rewire('../../../../src/lib/mioSecurity/crypto/jwt');
+const jwt = rewire('@mio/lib/src/mioSecurity/crypto/jwt');
 const formatClaimObject = jwt.__get__('formatClaimObject');
+
+const algorithm = mio.config.get('security.keys.algorithm') as string;
+const modulusLength = mio.config.get('security.keys.modulusLength') as number;
+const algorithmASym = mio.config.get('security.jwt.algorithmASym') as string;
 
 function makeClaims(): jwtClaims {
 	return {
@@ -27,8 +31,8 @@ describe('JSON Web Token functions', function () {
 	}
 
 	it('creates JSON Web Tokens', async function () {
-		({publicKey, privateKey} = await mio.lib.security.crypto.keys.generateKeyPair());
-		asymmetricToken = await mio.lib.security.crypto.jwt.generateTokenJWT(claims, privateKey);
+		({publicKey, privateKey} = await mio.lib.security.crypto.keys.generateKeyPair(algorithm, modulusLength));
+		asymmetricToken = await mio.lib.security.crypto.jwt.generateTokenJWT(claims, privateKey,algorithmASym);
 		assert.equal(asymmetricToken.split('.').length, 3);
 	});
 	it('decodes a JWT payload', function(){
@@ -37,7 +41,7 @@ describe('JSON Web Token functions', function () {
 
 	});
 	it('fails validation for a bad cert', async function(){
-		const badkeys = await mio.lib.security.crypto.keys.generateKeyPair();
+		const badkeys = await mio.lib.security.crypto.keys.generateKeyPair(algorithm, modulusLength);
 		return assert.isRejected(mio.lib.security.crypto.jwt.validateTokenJWT(asymmetricToken, badkeys.publicKey), Error, 'signature verification failed');
 	});
 	it('validates a signed JWT', async function(){

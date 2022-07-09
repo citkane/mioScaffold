@@ -1,11 +1,13 @@
 import mio from '@mio/scaffold';
 import { assert } from '../../unit.spec';
 
+const hashrounds = mio.config.get('security.hash.saltRounds') as number;
+
 describe('Password hashing and other utilities', function(){
 	const goodPassword = 'goodpassword';
 	let hash: string;
 	it('creates a password hash', async function(){
-		hash = await mio.lib.security.crypto.passwords.createHashFromPassword(goodPassword);
+		hash = await mio.lib.security.crypto.passwords.createHashFromPassword(goodPassword, hashrounds);
 		assert.isString(hash);
 	});
 	it('verifies password using the hash', async function(){

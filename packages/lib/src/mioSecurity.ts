@@ -15,5 +15,7 @@
 
 import crypto from './mioSecurity/crypto/crypto';
 
+export default { 
+	crypto
+};
 export {crypto};
-export default crypto;

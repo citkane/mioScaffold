@@ -8,18 +8,10 @@
  */
 
 process.env['OPENSSL_CONF']='/dev/null'; /* Workaround for https://github.com/nodejs/node/discussions/43184 */
-import config from '@mio/config';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const crypto = require('crypto');
 import type {KeyObject} from 'crypto';
-
-export default {
-	generateKeyPair,
-	keyToPEM,
-	pemToPublicKey,
-	pemToPrivateKey
-};
 
 /** The default NodeJS 'KeyOject' with mio specific allowed type methods */
 export type keyObject = KeyObject & {
@@ -33,20 +25,25 @@ export type KeyPair = {
 	privateKey: keyObject
 }
 
-const keyAlgorithm: string = config.get('security.keys.algorithm');
-const modulusLength: number = config.get('security.keys.modulusLength');
-
+export default {
+	generateKeyPair,
+	keyToPEM,
+	pemToPublicKey,
+	pemToPrivateKey
+};
 
 /**
  * Generate a new Public / Private key pair
  * 
- * @param alg 
- * @param len 
+ * @param alg The algorithm to use. `config.get('security.keys.algorithm') as string;`
+ * @param len The modulus length to use. `config.get('security.keys.modulusLength') as number;`
  * @returns A new public / private key pair in PEM format
+ * 
+ * @todo Creat types for acceptable alg and len
  * 
  * @group Key Generation
  */
-export function generateKeyPair(alg = keyAlgorithm, len = modulusLength): Promise<KeyPair> {
+export function generateKeyPair(alg: string, len: number): Promise<KeyPair> {
 	return new Promise((resolve, reject) => {
 		crypto.generateKeyPair(
 			alg,

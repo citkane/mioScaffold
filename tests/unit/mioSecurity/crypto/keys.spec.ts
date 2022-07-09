@@ -1,10 +1,13 @@
 import mio from '@mio/scaffold';
 import { assert } from '../../unit.spec';
 
+const algorithm = mio.config.get('security.keys.algorithm') as string;
+const modulusLength = mio.config.get('security.keys.modulusLength') as number;
+
 let privateKey, publicKey, keyPair, privatePem, publicPem;
 describe('Asymmetrical Key functions', function () {
 	it('creates keys', async function () {
-		keyPair = await mio.lib.security.crypto.keys.generateKeyPair();
+		keyPair = await mio.lib.security.crypto.keys.generateKeyPair(algorithm, modulusLength);
 		assert.hasAllKeys(keyPair, ['privateKey', 'publicKey'], 'invalid KeyPair created');
 
 		({ privateKey, publicKey } = keyPair);
@@ -16,12 +19,11 @@ describe('Asymmetrical Key functions', function () {
 		assert.eventually;
 	});
 	it('errors on incorrect key algorithm', async function(){
-		return assert.isRejected(mio.lib.security.crypto.keys.generateKeyPair('foo'), Error, 'The argument \'type\' must be a supported key type. Received \'foo\'');
+		return assert.isRejected(mio.lib.security.crypto.keys.generateKeyPair('foo', modulusLength), Error, 'The argument \'type\' must be a supported key type. Received \'foo\'');
 	});
 
 	it('converts keys to PEM', function () {
 		assert.isString((() => privatePem = mio.lib.security.crypto.keys.keyToPEM(privateKey))());
-		console.log(privatePem);
 		assert.isString((() => publicPem = mio.lib.security.crypto.keys.keyToPEM(publicKey))());
 		assert.isTrue(privatePem.startsWith('-----BEGIN PRIVATE KEY-----\n'), 'invalid private PEM created');
 		assert.isTrue(publicPem.startsWith('-----BEGIN PUBLIC KEY-----\n'), 'invalid public PEM created');

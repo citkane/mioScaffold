@@ -6,11 +6,16 @@
  */
 
 import path from 'path';
-import * as security from './mioSecurity';
-import * as persistence from './mioPersistence';
+import security from './mioSecurity';
+import persistence from './mioPersistence';
 
-export { security };
-export { persistence };
+export default {
+	security,
+	persistence,
+	findMioRootDir
+};
+export {security};
+export {persistence};
 
 /**
  * Finds the root folder of the mio installation
@@ -24,11 +29,5 @@ export function findMioRootDir(childDirName = __dirname, rootDirName = 'mioScaff
 	return childDirName.endsWith(`/${rootDirName}/`) ? childDirName : findMioRootDir(path.join(childDirName, '../'), rootDirName);
 }
 
-
-export default {
-	security,
-	persistence,
-	findMioRootDir
-};
 
 

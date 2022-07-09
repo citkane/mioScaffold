@@ -1,16 +1,9 @@
 import path from 'path';
-import * as lib from '@mio/lib';
+import {findMioRootDir} from '@mio/lib';
 
-import mio from '@mio/scaffold';
+process.env['NODE_CONFIG_DIR'] = path.join(findMioRootDir(__dirname), 'configs');
 
-console.log(mio);
-
-
-process.env['NODE_CONFIG_DIR'] = path.join(lib.findMioRootDir(__dirname), 'configs');
-
-console.log(process.env['NODE_CONFIG_DIR']);
-
-import theConfig from 'config';
+import config from 'config';
 
 /**
  * #### Provides the application configuration object.
@@ -22,5 +15,4 @@ import theConfig from 'config';
  * 
  * @todo Point to default config files
  */
-export const config = theConfig;
 export default config;

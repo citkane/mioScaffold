@@ -5,6 +5,6 @@
 		"./package.json"
 	],
 	"compilerOptions": {
-		"outDir": "../../dist/scaffold/packages/lib"
+		"outDir": "../../dist/packages/lib"
 	}
 }

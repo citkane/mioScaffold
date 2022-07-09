@@ -6,9 +6,6 @@
  */
 
 import bcrypt from 'bcrypt';
-import config from '@mio/config';
-
-const saltRounds: number = config.get('security.hash.saltRounds');
 
 export default {
 	createHashFromPassword,
@@ -17,12 +14,12 @@ export default {
 /**
  * Creates a hash from a password string for storage in the user database
  * @param password 
- * @param rounds 
+ * @param rounds the number of hashrounds to use. `config.get('security.hash.saltRounds') as number;`
  * @returns hash string
  * 
  * @group Hashing Functions
  */
-export function createHashFromPassword(password: string, rounds: number = saltRounds): Promise<string>{
+export function createHashFromPassword(password: string, rounds: number): Promise<string>{
 	return bcrypt.hash(password, rounds);
 }
 
