@@ -1,0 +1,5 @@
+{
+	"$schema": "https://typedoc.org/schema.json",
+	"out": "../../docs_partial/scaffold",
+	"entryPoints": ["./src/mioScaffold.ts"],
+}

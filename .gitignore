@@ -1,7 +1,7 @@
 securityStore
 node_modules
 build
-docs
+docs*
 coverage
 .nyc_output
 node_modules

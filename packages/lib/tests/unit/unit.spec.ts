@@ -1,6 +1,6 @@
 import path from 'path';
 import mio from '@mio/scaffold';
-import {assert} from './unit.spec';
+import {assert} from '@mio/testconfig';
 
 describe('TOOL UTILITY TESTS', function(){
 	it('Finds the root install path', function () {
@@ -16,3 +16,6 @@ describe('TOOL UTILITY TESTS', function(){
 		assert.throws(()=>mio.lib.findMioRootDir(__dirname, '/'), Error, 'Cannot find the project root folder: \'/\'');
 	});
 });
+
+require('./mioSecurity.spec');
+require('./mioPersistence.spec');

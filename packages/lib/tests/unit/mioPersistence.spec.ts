@@ -2,7 +2,7 @@
 import path from 'path';
 import fs from 'fs-extra';
 import mio from '@mio/scaffold';
-import { assert } from './unit.spec';
+import { assert } from '@mio/testconfig';
 
 const testTempDir = path.join(mio.lib.findMioRootDir(), 'tests/tmp');
 const testDBfile = path.join(testTempDir, 'tests/tmp/test.db');

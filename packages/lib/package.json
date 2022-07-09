@@ -1,13 +1,17 @@
 {
 	"name": "@mio/lib",
 	"main": "src/mioLib",
-	"scripts": {
-		"test:unit": "mocha ./tests/unit/unit.spec.ts"
-	},
 	"typedoc": {
 		"entryPoint": "src/mioLib.ts"
 	},
+	"scripts": {
+		"test:unit": "NODE_ENV=test nyc mocha ./tests/unit/unit.spec.ts",
+		"docs": "typedoc",
+		"docs:watch": "typedoc --watch"
+	},
+
 	"devDependencies": {
+		"@mio/testconfig": "*",
 		"@mio/tsconfig": "*"
 	},
 	"dependencies": {

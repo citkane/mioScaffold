@@ -1,9 +1,14 @@
+/**
+ *
+ * @module
+ */
+
 import path from 'path';
 import {findMioRootDir} from '@mio/lib';
 
 process.env['NODE_CONFIG_DIR'] = path.join(findMioRootDir(__dirname), 'configs');
 
-import config from 'config';
+import theConfig from 'config';
 
 /**
  * #### Provides the application configuration object.
@@ -15,4 +20,4 @@ import config from 'config';
  * 
  * @todo Point to default config files
  */
-export default config;
+export const config = theConfig;

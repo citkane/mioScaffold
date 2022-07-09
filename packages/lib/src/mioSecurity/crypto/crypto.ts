@@ -10,9 +10,9 @@
  * @module
  */
 
-import  jwt from './jwt';
-import  keys from './keys';
-import  passwords from './passwords';
+import  * as jwt from './jwt';
+import  * as keys from './keys';
+import  * as passwords from './passwords';
 
 export default {
 	jwt,

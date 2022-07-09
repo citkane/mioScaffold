@@ -1,0 +1,9 @@
+{
+	"extends": "@mio/tsconfig/commonjs.json",
+	"include": [
+		"./testConfig.ts",
+	],
+	"compilerOptions": {
+		"outDir": "../dist/packages/testconfig"
+	}
+}

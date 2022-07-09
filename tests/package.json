@@ -1,0 +1,8 @@
+{
+	"name": "@mio/testconfig",
+	"version": "0.0.0",
+	"main": "testConfig",
+	"dependencies": {
+		"@mio/scaffold": "*"
+	}
+}

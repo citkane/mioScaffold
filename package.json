@@ -2,18 +2,19 @@
   "name": "mio",
   "version": "0.0.0",
   "description": "The mio microservice architecture",
-  "main": ".scaffold/src/mioScaffold",
+  "main": "./packages/scaffold",
   "workspaces": [
     "packages/*",
-    "tsconfig"
+    "tsconfig",
+    "tests"
   ],
   "type": "commonjs",
   "scripts": {
-    "build": "tsc --build",
+    "build": "tsc --build && node ./tsconfig/postBuild",
     "build:watch": "tsc --build --watch",
     "docs": "typedoc",
-    "test:unit": "NODE_ENV=test mocha ./tests/unit/unit.spec.ts",
-    "test:unit:watch": "NODE_ENV=test ts-mocha --watch ./tests/unit/unit.spec.ts",
+    "test:unit": "NODE_ENV=test nyc mocha ./tests/unit/unit.spec.ts",
+    "test:unit:watch": "NODE_ENV=test mocha --watch ./tests/unit/unit.spec.ts",
     "tunnel": "npx localtunnel --port 5500"
   },
   "repository": {
@@ -40,7 +41,8 @@
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^1.0.2",
-    "@mio/tsconfig": "^0.0.0",
+    "@mio/testconfig": "*",
+    "@mio/tsconfig": "*",
     "@types/assert": "^1.5.6",
     "@types/bcrypt": "^5.0.0",
     "@types/chai": "^4.3.1",
@@ -59,7 +61,6 @@
     "nyc": "^15.1.0",
     "rewire": "^6.0.0",
     "source-map-support": "^0.5.21",
-    "ts-mocha": "^10.0.0",
     "ts-node": "^10.8.2",
     "typedoc": "^0.23.2",
     "typescript": "^4.7.4"

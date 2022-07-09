@@ -1,5 +1,5 @@
 import mio from '@mio/scaffold';
-import { assert } from '../../unit.spec';
+import { assert } from '@mio/testconfig';
 
 const algorithm = mio.config.get('security.keys.algorithm') as string;
 const modulusLength = mio.config.get('security.keys.modulusLength') as number;

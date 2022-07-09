@@ -1,5 +1,5 @@
 import mio from '@mio/scaffold';
-import { assert } from '../../unit.spec';
+import { assert } from '@mio/testconfig';
 
 const hashrounds = mio.config.get('security.hash.saltRounds') as number;
 

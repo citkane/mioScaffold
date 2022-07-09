@@ -13,7 +13,7 @@
  * @module
  */
 
-import crypto from './mioSecurity/crypto/crypto';
+import * as crypto from './mioSecurity/crypto/crypto';
 
 export default { 
 	crypto

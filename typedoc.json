@@ -1,6 +1,6 @@
 {
 	"$schema": "https://typedoc.org/schema.json",
-	"out": "docs",
+	"out": "docs_build",
 	"entryPoints": [
 		"packages/*"
 	],
@@ -10,5 +10,5 @@
 	],
 	"excludeExternals": true,
 	"readme": "README.md",
-	"logLevel": "Error"
+	"logLevel": "Verbose"
 }

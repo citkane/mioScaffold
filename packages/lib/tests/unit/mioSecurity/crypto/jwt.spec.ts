@@ -1,5 +1,5 @@
 import mio from '@mio/scaffold';
-import { assert } from '../../unit.spec';
+import { assert } from '@mio/testconfig';
 import { jwtClaims } from '@mio/lib/src/mioSecurity/crypto/jwt';
 
 import rewire from 'rewire';

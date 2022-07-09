@@ -1,13 +1,13 @@
 /**
  * 
- * A library of pure static functions
+ * #### A library of base utilities as pure static functions
  * 
  * @module
  */
 
 import path from 'path';
-import security from './mioSecurity';
-import persistence from './mioPersistence';
+import * as security from './mioSecurity';
+import * as persistence from './mioPersistence';
 
 export default {
 	security,
