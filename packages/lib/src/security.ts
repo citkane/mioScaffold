@@ -1,10 +1,10 @@
 /**
- * #### Security for mio, while at v0, should be considered as Proof of Concept.
+ * #### Security for yaf, while at v0, should be considered as Proof of Concept.
  * The security construct provideds a flow of tokens through microservices to enforce identity and permissions.
  * 
  * This should not require microservices to expose their locations to anything outside of the system, such as 3rd party auth services.
  * 
- * Some FOSS libraries may be suitable as a dependency deployment within mio, for example:
+ * Some FOSS libraries may be suitable as a dependency deployment within yaf, for example:
  * 
  * - <a href="https://supertokens.com/" target="_blank">SuperTokens</a>
  * 
@@ -13,7 +13,7 @@
  * @module
  */
 
-import * as crypto from './mioSecurity/crypto/crypto';
+import * as crypto from './security/crypto/crypto';
 
 export default { 
 	crypto

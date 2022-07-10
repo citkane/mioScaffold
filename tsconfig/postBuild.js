@@ -14,6 +14,7 @@ if(!fs.existsSync(buildPath)) throw new Error('The build folder "dist" does not 
 
 try {
 	cleanPackageJson(path.join(buildPath, 'package.json'));
+	cleanPackageJson(path.join(buildPath, 'src', 'package.json'));
 } catch (err){
 	throw err;
 }

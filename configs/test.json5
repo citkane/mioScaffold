@@ -10,5 +10,10 @@
             }
         }
     },
+    storage:{
+        sqlite:{
+            fileStore: './tests/tmp/securityStore/development'
+        }
+    },
 
 }

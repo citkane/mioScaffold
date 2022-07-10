@@ -1,5 +1,5 @@
 /**
- * #### The base Json Web Token (JWT) utilities for mio.
+ * #### The base Json Web Token (JWT) utilities for yaf.
  * This should be limited to usage of the
  * <a href="https://github.com/panva/jose" target="_blank">jose</a>
  * suite of JWT tools and upgraded to native NODEjs when native tools are stable.
@@ -42,7 +42,7 @@ export interface jwtClaims extends jwtCustomClaims{
 	/** Any amount of addition custom claims */
 }
 interface jwtCustomClaims {
-	[key:`mio_${string}`]: string | object | number;
+	[key:`yaf_${string}`]: string | object | number;
 }
 export interface validatedClaims {
 	payload: jwtClaims,

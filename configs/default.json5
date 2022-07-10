@@ -1,8 +1,8 @@
 {
-    domain: 'mioApp',
+    domain: 'yafApp',
     environment: 'development',
     services: {
-        mioAuth: {
+        yafAuth: {
             storage: 'filesystem',
             rest:{
                 https: false,
@@ -41,7 +41,7 @@
                 '@openpoint.ie'
             ]
         },
-        mioMail: {
+        yafMail: {
             smtp: {
                 host: '',
                 port: 465,
@@ -79,8 +79,12 @@
             saltRounds: 10,
         }
     },
-
-    mioApp : {
+    storage:{
+        sqlite:{
+            fileStore: './securityStore/development'
+        }
+    },
+    yafApp : {
         /*
         'BUS':{
             'type':'mqtt',

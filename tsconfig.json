@@ -1,6 +1,8 @@
 {
-	"extends": "@mio/tsconfig/commonjs.json",
+	"extends": "@yaf/tsconfig/commonjs.json",
 	"include": [
+		"src/index.ts",
+		"src/package.json",
 		"package.json"
 	],
 	"compilerOptions": {
@@ -8,7 +10,6 @@
 	},
 	"references": [
 		{"path": "packages/lib"},
-		{"path": "packages/config"},
-		{"path": "packages/scaffold"},
+		{"path": "packages/storage"}
 	]
 }

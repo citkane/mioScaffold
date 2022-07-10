@@ -1,5 +1,5 @@
 {
-	"name": "@mio/tsconfig",
+	"name": "@yaf/tsconfig",
 	"version": "0.0.0",
 	"files": [
 		"commonjs.json"

@@ -1,21 +1,19 @@
+if (process.env['NODE_ENV'] !== 'test') throw new Error(`Environment is not test. Got: ${process.env['NODE_ENV'] }`);
+
 import path from 'path';
-import mio from '@mio/scaffold';
-import {assert} from '@mio/testconfig';
+import yaf from 'yaf';
+import {assert} from '@yaf/testconfig';
 
 describe('TOOL UTILITY TESTS', function(){
 	it('Finds the root install path', function () {
-		let rootDir;
-		const installedPath = path.join(__dirname, '../../');
-		const installedBaseName = path.basename(installedPath);
-		assert.doesNotThrow(function () {
-			rootDir = mio.lib.findMioRootDir(__dirname, installedBaseName);
-		});
-		assert.equal(rootDir, installedPath, 'did not find the root install directory');
+		const installPath = path.join(__dirname, '../../../../');
+		const rootPath = yaf.lib.findYafRootDir();
+		assert.equal(installPath, rootPath , `did not find the root install directory. Got: ${rootPath}`);
 	});	
 	it('Errors when the system root folder is reached', function(){
-		assert.throws(()=>mio.lib.findMioRootDir(__dirname, '/'), Error, 'Cannot find the project root folder: \'/\'');
+		assert.throws(()=>yaf.lib.findYafRootDir(__dirname, '/'), Error, 'Cannot find the project root folder: \'/\'');
 	});
 });
 
-require('./mioSecurity.spec');
-require('./mioPersistence.spec');
+require('./security.spec');
+require('./persistence.spec');

@@ -1,5 +1,0 @@
-{
-	"$schema": "https://typedoc.org/schema.json",
-	"out": "../../docs_partial/lib",
-	"entryPoints": ["./src/mioLib.ts"],
-}

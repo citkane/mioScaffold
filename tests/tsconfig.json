@@ -1,5 +1,5 @@
 {
-	"extends": "@mio/tsconfig/commonjs.json",
+	"extends": "@yaf/tsconfig/commonjs.json",
 	"include": [
 		"./testConfig.ts",
 	],

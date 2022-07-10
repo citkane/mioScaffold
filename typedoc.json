@@ -1,14 +1,17 @@
 {
 	"$schema": "https://typedoc.org/schema.json",
-	"out": "docs_build",
+	"out": "docs",
 	"entryPoints": [
-		"packages/*"
+		"src/index.ts"
 	],
-	"entryPointStrategy": "packages",
 	"externalPattern": [
 		"**/node_modules/**"
 	],
 	"excludeExternals": true,
-	"readme": "README.md",
+	"excludePrivate": true,
+	"excludeProtected": true,
+	"readme": "./README.md",
+	"media": "./media",
+	"includes": "./mediaDocs",
 	"logLevel": "Verbose"
 }

@@ -1,5 +1,5 @@
 /**
- * #### The base cryptographic utilities for mio.
+ * #### The base cryptographic utilities for yaf.
  * This should be limited to use of the native
  * <a href="https://nodejs.org/dist/latest-v16.x/docs/api/crypto.html" target="_blank">node:crypto</a>
  * utils.
@@ -13,7 +13,7 @@ process.env['OPENSSL_CONF']='/dev/null'; /* Workaround for https://github.com/no
 const crypto = require('crypto');
 import type {KeyObject} from 'crypto';
 
-/** The default NodeJS 'KeyOject' with mio specific allowed type methods */
+/** The default NodeJS 'KeyOject' with yaf specific allowed type methods */
 export type keyObject = KeyObject & {
 	equals: (KeyObject: KeyObject) => boolean;
 };
