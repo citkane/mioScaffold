@@ -1,4 +1,3 @@
-<img src="./assets/logo.svg" alt="mio logo" style="width: 80px"/>
+<img src="./media/logotype.svg" alt="YAF, Yet Another Framework" style="height: 95px"/>
 
-## Yet Another Microservice Framework
-
+From README.md in root folder
